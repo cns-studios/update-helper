@@ -47,7 +47,7 @@ To get your **Discord Webhook URL**, follow these steps:
 
 - Go to your Discord Channel, where the Bot will be installed
 - Settings -> Integrations -> Webhooks
-- Copy a new Webhook and paste the URL into a new file named `.env`
+- Copy the new Webhook and paste the URL into a new file named `.env`
 
 **The .env File** should look like this:
 
