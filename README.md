@@ -45,9 +45,9 @@ Maybe youre using `cloudflared` or other Tunnels. Either way you have to expose 
 
 To get your **Discord Webhook URL**, follow these steps:
 
-- Go to your Discord Channel, where the Bot is installed
+- Go to your Discord Channel, where the Bot will be installed
 - Settings -> Integrations -> Webhooks
-- Copy a new Webhook and paste the URL into a file named `.env`
+- Copy a new Webhook and paste the URL into a new file named `.env`
 
 **The .env File** should look like this:
 
