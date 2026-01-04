@@ -6,11 +6,17 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-# Load .env from project root
 env_path = Path(__file__).parent.parent / '.env'
 load_dotenv(dotenv_path=env_path)
 
+intents = discord.Intents.default()
+intents.message_content = True
+
 bot = commands.Bot(command_prefix='!')
+
+@bot.event()
+async def on_ready():
+    print(f'{bot.user} is now online!')
 
 @bot.command()
 async def update(ctx, target, timing):
@@ -28,7 +34,7 @@ async def update(ctx, target, timing):
             await ctx.send("Invalid timing. Use 'now' or number of hours")
             return
     
-    webhook_url = "https://your-server.domain/webhook/update"    
+    webhook_url = os.getenv("WEBHOOK_URL")
     payload = {
         "target": target,
         "delay": delay,

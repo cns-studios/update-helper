@@ -37,6 +37,10 @@ But any bash script will work.
 
 **Be aware that anyone, that has access to the Bot commands can run anything you've configured on your Server!**
 
+## Configuration
+
+Maybe youre using `cloudflared` or other Tunnels. Either way you have to expose the `Webhook URl` to the Internet somehow. You could open Ports on your Firewall and Router or setup tunneling Rules in your Tunnel Provider.
+
 ### Discord Webhook
 
 To get your **Discord Webhook URL**, follow these steps:
@@ -51,9 +55,13 @@ To get your **Discord Webhook URL**, follow these steps:
 DC_WEBHOOK_URL=https://discordapp.com/api/webhooks/...
 ```
 
-## Configuration
+### Your Webhook
 
-Maybe youre using `cloudflared` or other Tunnels. Either way you have to expose the `Webhook URl` to the Internet somehow. You could open Ports on your Firewall and Router or setup tunneling Rules in your Tunnel Provider.
+Add your own Webhook URL of your Server to `the .env file`:
+```
+WEBHOOK_URL=yourdomain.com
+```
+
 
 ### Advanced
 An example for `cloudflare tunnels`:
