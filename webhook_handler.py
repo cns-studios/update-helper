@@ -3,17 +3,14 @@ import subprocess
 import threading
 import time
 import requests
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 app = Flask(__name__)
 
 def run_update(target, discord_webhook):
+    """Execute the update and send logs to Discord"""
     try:
         if target == 'all':
-            cmd = ['bash', '/path/to/update_all.sh']
+            cmd = ['bash', 'hello_world.sh']
         elif target == 'project':
             cmd = ['bash', '/path/to/update_project.sh']
         elif target == 'group':
@@ -23,7 +20,7 @@ def run_update(target, discord_webhook):
             cmd,
             capture_output=True,
             text=True,
-            timeout=300  
+            timeout=300
         )
         
         logs = f"**Update Complete: {target}**\n```\n"
@@ -38,9 +35,9 @@ def run_update(target, discord_webhook):
         requests.post(discord_webhook, json={"content": logs})
         
     except subprocess.TimeoutExpired:
-        requests.post(discord_webhook, json={"content": f"❌ Update for {target} timed out"})
+        requests.post(discord_webhook, json={"content": f"Update for {target} timed out"})
     except Exception as e:
-        requests.post(discord_webhook, json={"content": f"❌ Error during update: {str(e)}"})
+        requests.post(discord_webhook, json={"content": f"Error during update: {str(e)}"})
 
 @app.route('/webhook/update', methods=['POST'])
 def webhook_update():
@@ -50,7 +47,6 @@ def webhook_update():
     discord_webhook = data.get('discord_webhook')
     
     if delay > 0:
-        # Schedule for later
         def delayed_update():
             time.sleep(delay * 3600)
             run_update(target, discord_webhook)
@@ -66,5 +62,4 @@ def webhook_update():
     return jsonify({"status": "accepted"}), 200
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=5000)

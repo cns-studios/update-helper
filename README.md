@@ -57,9 +57,9 @@ DC_WEBHOOK_URL=https://discordapp.com/api/webhooks/...
 
 ### Your Webhook
 
-Add your own Webhook URL of your Server to `the .env file`:
+Add your own Webhook URL of your Server to `the .env file`. This should be the full URL, including the protocol and the path to the webhook. For example:
 ```
-WEBHOOK_URL=yourdomain.com
+WEBHOOK_URL=http://yourdomain.com/webhook/update
 ```
 
 

@@ -12,9 +12,9 @@ load_dotenv(dotenv_path=env_path)
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='!', intents=intents)
 
-@bot.event()
+@bot.event
 async def on_ready():
     print(f'{bot.user} is now online!')
 
@@ -46,11 +46,11 @@ async def update(ctx, target, timing):
         
         if response.status_code == 200:
             if delay == 0:
-                await ctx.send(f"✅ Update started for: **{target}**\nLogs will be posted here when complete.")
+                await ctx.send(f"Update started for: **{target}**\nLogs will be posted here when complete.")
             else:
-                await ctx.send(f"⏰ Update scheduled for **{target}** in {delay} hours\nLogs will be posted here when complete.")
+                await ctx.send(f"Update scheduled for **{target}** in {delay} hours\nLogs will be posted here when complete.")
         else:
-            await ctx.send(f"❌ Failed to trigger update: {response.status_code}")
+            await ctx.send(f"Failed to trigger update: {response.status_code}")
     
     except Exception as e:
         await ctx.send(f"❌ Error connecting to server: {str(e)}")
